@@ -44,10 +44,6 @@
     transform: rotateY(180deg);
 }
 
-@mixin cards-back {
-    transform: rotateY(0deg);
-}
-
 @mixin cards-flipped {
   transform: rotateY(180deg);
 }
