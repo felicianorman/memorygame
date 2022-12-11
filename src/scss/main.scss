@@ -21,6 +21,14 @@ body {
   @include mixins.game;
 }
 
-.memory__card {
+.card {
   @include mixins.cards;
+}
+
+.card__front {
+    @include mixins.cards-front;
+}
+
+.flipped {
+    @include mixins.cards-flipped;
 }
