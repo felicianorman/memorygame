@@ -1,0 +1,10 @@
+{
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.8.1",
+    "parcel": "^2.8.1"
+  },
+  "dependencies": {
+    "@parcel/transformer-typescript-tsc": "^2.8.1",
+    "@parcel/validator-typescript": "^2.8.1"
+  }
+}
