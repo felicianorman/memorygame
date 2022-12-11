@@ -1,0 +1,26 @@
+@use "mixins";
+
+body {
+  margin: 0;
+  background-color: rgb(245, 204, 211);
+  font-family: 'Indie Flower', cursive;
+
+  h2 {
+    text-align: center;
+    font-size: 2em;
+    margin: 0;
+    padding: 5px;
+  }
+}
+
+.container {
+  @include mixins.container;
+}
+
+.memory {
+  @include mixins.game;
+}
+
+.memory__card {
+  @include mixins.cards;
+}
