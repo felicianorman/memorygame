@@ -2,13 +2,16 @@
 let memoryCard = document.querySelectorAll(".card");
 let displayPoints = document.getElementById("showScore");
 let displayTime = document.getElementById("showTime");
+//Variabler för flip funktionen
 let flippedCard = false;
 let firstCard, secondCard;
+let lock = false;
 let points = 0;
 let time = 0;
-let lock = false;
-//Skapar event listener
-for(let i = 0; i < memoryCard.length; i++)memoryCard[i].addEventListener("click", flip);
+// Skapar event listener för varje kort
+function startGame() {
+    for(let i = 0; i < memoryCard.length; i++)memoryCard[i].addEventListener("click", flip);
+}
 //Funktion för att flippa korten
 function flip() {
     //Hindrar användaren att klicka på mer än två kort samtidigt. Om lock är true så stoppas funktionen här
@@ -37,10 +40,8 @@ function checkMatch() {
     }
     if (points === 6) {
         //Om användaren får full pott
-        console.log("High Score!");
-        setTimeout(()=>{
-            alert("Du vann!");
-        }, 1000);
+        alert(`Du vann! Det tog ${sec} sekunder och du fick ${points} poäng!`);
+        clearInterval(clock);
     }
     noMatch();
 }
@@ -58,6 +59,36 @@ function noMatch() {
 }
 //Börjar med att visa 0 poäng
 displayPoints.innerHTML = String(points);
-displayTime.innerHTML = `${String(time)} s`;
+let parentDiv = document.getElementById("memory");
+let cardDiv = parentDiv.children;
+let frag = document.createDocumentFragment();
+//Funktion som shufflar korten
+function shuffleHTML() {
+    while(cardDiv.length)frag.appendChild(cardDiv[Math.floor(Math.random() * cardDiv.length)]);
+    parentDiv.appendChild(frag);
+}
+let sec = 0;
+let clock = setInterval(()=>{
+    displayTime.innerHTML = String(sec);
+    sec++;
+}, 1000);
+let resetButton = document.getElementById("reset");
+resetButton.addEventListener("click", resetGame);
+function resetGame() {
+    points = 0;
+    time = 0;
+    clearInterval(clock);
+    displayPoints.innerHTML = String(points);
+    displayTime.innerHTML = String(time);
+    shuffleHTML();
+    memoryCard.forEach((card, i)=>{
+        setTimeout(()=>{
+            card.classList.remove("flipped");
+            memoryCard[i].addEventListener("click", flip);
+        });
+    });
+}
+startGame();
+shuffleHTML();
 
-//# sourceMappingURL=index.240e4c4e.js.map
+//# sourceMappingURL=index.cd6d870a.js.map
