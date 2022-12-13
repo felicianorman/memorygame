@@ -90,5 +90,3 @@ function resetGame() {
 }
 startGame();
 shuffleHTML();
-
-
