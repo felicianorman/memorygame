@@ -2,13 +2,15 @@ let memoryCard = document.querySelectorAll(".card");
 let displayPoints = document.getElementById("showScore") as HTMLSpanElement;
 let displayTime = document.getElementById("showTime") as HTMLSpanElement;
 
+//Variabler för flip funktionen
 let flippedCard = false;
 let firstCard: any, secondCard: any;
-let points = 0;
-let time = 0;
 let lock = false;
 
-//Skapar event listener
+let points = 0;
+let time = 0;
+
+// Skapar event listener för varje kort
 for (let i = 0; i < memoryCard.length; i++) {
   memoryCard[i].addEventListener("click", flip);
 }
@@ -73,5 +75,20 @@ function noMatch(this: any) {
 }
 
 //Börjar med att visa 0 poäng
+
 displayPoints.innerHTML = String(points);
-displayTime.innerHTML = `${String(time)} s`
+displayTime.innerHTML = `${String(time)} s`;
+
+let parentDiv = document.getElementById("memory") as HTMLDivElement;
+let cardDiv = parentDiv.children;
+let frag = document.createDocumentFragment();
+
+//Funktion som shufflar korten
+function shuffleHTML() {
+  while (cardDiv.length) {
+    frag.appendChild(cardDiv[Math.floor(Math.random() * cardDiv.length)]);
+  }
+  parentDiv.appendChild(frag);
+}
+
+shuffleHTML();
