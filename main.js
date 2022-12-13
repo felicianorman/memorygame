@@ -60,3 +60,4 @@ function noMatch() {
 displayPoints.innerHTML = String(points);
 displayTime.innerHTML = `${String(time)} s`;
 
+//# sourceMappingURL=index.240e4c4e.js.map
