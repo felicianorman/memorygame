@@ -11,8 +11,10 @@ let points = 0;
 let time = 0;
 
 // Skapar event listener för varje kort
-for (let i = 0; i < memoryCard.length; i++) {
-  memoryCard[i].addEventListener("click", flip);
+function startGame() {
+  for (let i = 0; i < memoryCard.length; i++) {
+    memoryCard[i].addEventListener("click", flip);
+  }
 }
 
 //Funktion för att flippa korten
@@ -50,10 +52,8 @@ function checkMatch() {
 
   if (points === 6) {
     //Om användaren får full pott
-    console.log("High Score!");
-    setTimeout(() => {
-      alert("Du vann!");
-    }, 1000);
+    alert(`Du vann! Det tog ${sec} sekunder och du fick ${points} poäng!`);
+    clearInterval(clock);
   }
 
   noMatch();
@@ -75,9 +75,7 @@ function noMatch(this: any) {
 }
 
 //Börjar med att visa 0 poäng
-
 displayPoints.innerHTML = String(points);
-displayTime.innerHTML = `${String(time)} s`;
 
 let parentDiv = document.getElementById("memory") as HTMLDivElement;
 let cardDiv = parentDiv.children;
@@ -91,4 +89,27 @@ function shuffleHTML() {
   parentDiv.appendChild(frag);
 }
 
+let sec = 0;
+let clock = setInterval(() => {
+  displayTime.innerHTML = String(sec);
+  sec++;
+}, 1000);
+
+let resetButton = document.getElementById("reset") as HTMLButtonElement;
+resetButton.addEventListener("click", resetGame);
+
+function resetGame() {
+  points = 0;
+  time = 0;
+  clearInterval(clock);
+  displayPoints.innerHTML = String(points);
+  displayTime.innerHTML = String(time);
+  shuffleHTML();
+
+  memoryCard.forEach((card, i) => {
+    setTimeout(() => {card.classList.remove("flipped");
+    memoryCard[i].addEventListener("click", flip);})
+  })
+}
+startGame();
 shuffleHTML();
