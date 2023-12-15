@@ -1,61 +1,60 @@
 @use "mixins";
 
 body {
-  margin: 0;
-  background-color: rgb(245, 204, 211);
-  font-family: "Indie Flower", cursive;
+    margin: 0;
+    background-color: rgb(245, 204, 211);
+    font-family: "Indie Flower", cursive;
 
-  h2 {
-    text-align: center;
-    font-size: 3em;
-    margin: auto;
-    padding: 5px;
-  }
+    h2 {
+        text-align: center;
+        font-size: 3em;
+        margin: auto;
+        padding: 5px;
+    }
 }
 
 .valueContainer {
-  display: flex;
-  justify-content: center;
-  text-align: center;
-  gap: 12%;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    gap: 12%;
 
-  .points,
-  .time {
-    font-size: 1.5em;
-  }
+    .points,
+    .time {
+        font-size: 1.5em;
+    }
 }
 .container {
-  @include mixins.container;
+    @include mixins.container;
 }
 
 .memory {
-  @include mixins.game;
+    @include mixins.game;
 
-  @include mixins.mobile {
-    height: 50vh;
-    width: 350px;
-    display: flex;
-    justify-content: center;
+    @include mixins.mobile {
+        height: 50vh;
+        width: 350px;
+        display: flex;
+        justify-content: center;
 
-    // @mixin game {
-    //   width: 500px;
-    //   height: 500px;
-    //   margin: auto;
-    //   display: flex;
-    //   flex-wrap: wrap;
-    //   gap: 5px;
-    //   perspective: 1000px;
-  }
+        // @mixin game {
+        //   width: 500px;
+        //   height: 500px;
+        //   margin: auto;
+        //   display: flex;
+        //   flex-wrap: wrap;
+        //   gap: 5px;
+        //   perspective: 1000px;
+    }
 }
 
 .card {
-  @include mixins.cards;
+    @include mixins.cards;
 }
 
 .card__front {
-  @include mixins.cards-front;
+    @include mixins.cards-front;
 }
-
 .flipped {
-  @include mixins.cards-flipped;
+    @include mixins.cards-flipped;
 }
